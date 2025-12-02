@@ -30,6 +30,54 @@ body{
 .tagline{margin:8px 0 0;color:var(--neon-green);font-weight:600;max-width:60%}
 .hero-visual img{width:300px;height:120px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,#060606,#0b0b0b)}
 
+/* Premium page blocks and animations */
+.premium-hero{margin:18px 0}
+.premium-block{background:linear-gradient(135deg,rgba(0,234,255,0.03),rgba(0,255,136,0.02));border:1px solid rgba(0,234,255,0.06);padding:20px;border-radius:14px;margin-bottom:18px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+.hero-block{background:linear-gradient(90deg,rgba(0,234,255,0.03),rgba(0,255,136,0.02));padding:28px;text-align:left}
+.hero-title{font-family:Orbitron;margin:0;color:var(--neon-cyan);font-size:clamp(18px,4vw,34px);letter-spacing:1px}
+.hero-sub{font-family:Orbitron;margin:6px 0;color:#cfeee9;font-size:clamp(14px,3.2vw,20px)}
+.hero-desc{color:var(--muted);max-width:70%;margin-top:10px}
+
+.animated{animation:floatIn 900ms ease both;transform-origin:center}
+.animated[style*="--delay"]{animation-delay:var(--delay)}
+
+@keyframes floatIn{
+  0%{opacity:0;transform:translateY(12px) scale(.995);filter:blur(6px)}
+  60%{opacity:1;transform:translateY(-4px) scale(1.01);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.info-grid h4{margin:6px 0}
+
+.pricing{background:linear-gradient(90deg,rgba(0,0,0,0.06),rgba(255,255,255,0.01));padding:12px;border-radius:10px;margin-top:10px}
+.cta-row{display:flex;gap:10px;align-items:center;margin-top:14px}
+
+/* flashy subtle glowing accent for primary buttons */
+.btn.primary{box-shadow:0 8px 30px rgba(0,234,255,0.06),0 0 18px rgba(0,255,136,0.03)}
+
+@media (max-width:900px){
+  .hero-desc{max-width:100%}
+  .info-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:520px){
+  .hero-title{font-size:20px}
+  .hero-sub{font-size:14px}
+  .hero-desc{font-size:13px}
+  .premium-block{padding:14px}
+  .info-grid{gap:8px}
+}
+
+/* Modal styles for fake payment */
+.modal{display:none;position:fixed;inset:0;background:linear-gradient(rgba(3,3,3,0.6),rgba(3,3,3,0.6));align-items:center;justify-content:center;z-index:1200}
+.modal-content{width:100%;max-width:520px;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);border-radius:12px;padding:18px;border:1px solid rgba(0,234,255,0.06);box-shadow:0 12px 60px rgba(0,0,0,0.7)}
+.modal-close{position:absolute;right:18px;top:10px;background:transparent;border:0;color:var(--muted);font-size:22px;cursor:pointer}
+.modal h3{margin:0 0 8px 0;font-family:Orbitron}
+
+.modal .btn.primary{margin-left:6px}
+
+
 .ctas{display:flex;gap:12px;margin:18px 0}
 .btn{font-family:inherit;border:0;padding:12px 18px;border-radius:10px;cursor:pointer;transition:var(--transition);box-shadow:0 6px 20px rgba(0,0,0,0.6)}
 .btn.small{padding:8px 12px;font-size:14px}
