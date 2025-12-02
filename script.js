@@ -12,7 +12,8 @@ function createCarousel() {
   const inner = document.createElement('div');
   inner.className = 'carousel-inner';
   root.appendChild(inner);
-
+  // Disable 3D rotation and auto-animate on small/touch devices to avoid glitchy behavior.
+  const isMobile = window.matchMedia('(max-width:520px)').matches;
   const count = testimonials.length;
   const angleStep = 360 / count;
   const radius = 320; // visual radius
@@ -20,16 +21,25 @@ function createCarousel() {
   testimonials.forEach((t,i)=>{
     const card = document.createElement('div');
     card.className = 'card';
-    card.style.transform = `rotateY(${i*angleStep}deg) translateZ(${radius}px)`;
+    // Only apply 3D transform positioning on non-mobile
+    if(!isMobile){
+      card.style.transform = `rotateY(${i*angleStep}deg) translateZ(${radius}px)`;
+    }
     card.innerHTML = `<div class="quote">“${t.text}”</div><div class="who">${t.who}</div>`;
     inner.appendChild(card);
   });
 
-  let idx = 0;
-  setInterval(()=>{
-    idx = (idx+1) % count;
-    inner.style.transform = `rotateY(${-idx*angleStep}deg)`;
-  }, 3000);
+  if(!isMobile){
+    let idx = 0;
+    setInterval(()=>{
+      idx = (idx+1) % count;
+      inner.style.transform = `rotateY(${-idx*angleStep}deg)`;
+    }, 3000);
+  } else {
+    // Ensure no transform is applied on mobile
+    inner.style.transform = '';
+    inner.style.transition = 'none';
+  }
 }
 
 function createGrid() {
